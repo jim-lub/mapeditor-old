@@ -1,10 +1,10 @@
-import {
-  Dashboard
-} from 'components';
+import Dashboard from 'components/Dashboard';
 
 import {
   SignUp,
-  SignIn
+  SignIn,
+  ForgotPassword,
+  AccountSettings
 } from 'components/auth'
 
 // *** DASHBOARD ***
@@ -15,7 +15,7 @@ export const DASHBOARD = {
   name: 'Dashboard',
   desc: '',
   icon: 'default/dashboard.png',
-  authorization: ['member', 'premium', 'admin']
+  authorization: ['MEMBER', 'ADMIN']
 }
 
 // *** AUTH ***
@@ -26,7 +26,7 @@ export const AUTH_SIGN_UP = {
   name: 'Sign Up',
   desc: '',
   icon: 'default/auth_sign_up.png',
-  authorization: ['guest']
+  authorization: ['GUEST']
 }
 
 export const AUTH_SIGN_IN = {
@@ -36,25 +36,25 @@ export const AUTH_SIGN_IN = {
   name: 'Sign In',
   desc: '',
   icon: 'default/auth_sign_in.png',
-  authorization: ['guest']
+  authorization: ['GUEST']
 }
 
 export const AUTH_FORGOT_PASSWORD = {
   route: '/forgotpassword',
-  component: 'ForgotPassword',
+  component: ForgotPassword,
   exact: false,
   name: 'Forgot Password',
   desc: '',
   icon: 'default/auth_forgot_password.png',
-  authorization: ['member', 'premium', 'admin']
+  authorization: ['MEMBER', 'ADMIN']
 }
 
 export const AUTH_ACCOUNT_SETTINGS = {
   route: '/accountsettings',
-  component: 'AccountSettings',
+  component: AccountSettings,
   exact: false,
   name: 'Account Settings',
   desc: '',
   icon: 'default/auth_account_settings.png',
-  authorization: ['member', 'premium', 'admin']
+  authorization: ['MEMBER', 'ADMIN']
 }

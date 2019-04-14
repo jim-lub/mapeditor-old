@@ -14,11 +14,11 @@ const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <FirebaseContext.Provider value={new Firebase()}>
+    <FirebaseContext.Provider value={new Firebase()}>
+      <BrowserRouter>
         <App />
-      </FirebaseContext.Provider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </FirebaseContext.Provider>
   </Provider>,
   document.getElementById('root')
 )

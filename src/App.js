@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { Sidebar } from 'components';
-
+import Sidebar from 'components/Sidebar';
+import { useAuthentication} from 'lib/authentication';
 import * as ROUTES from 'config/constants/routes';
 
 export const App = () => {
+  const auth = useAuthentication();
+
   return (
     <div className="layout__wrapper">
       <div className="layout__sidebar">
