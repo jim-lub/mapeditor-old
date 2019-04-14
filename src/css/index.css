@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font: 12px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: #161616;
+}
+
+html, body {
+  background-color: #e6e9ed;
+  height: 100%;
+}
+
+span {
+  font-weight: inherit;
+  color: inherit;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}

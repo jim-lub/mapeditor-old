@@ -1,0 +1,22 @@
+.sidebar__wrapper {
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #aab2bd;
+  background-color: #f5f7fa;
+}
+
+.sidebar__btn {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #e6e9ed;
+}
+
+  .sidebar__btn-icon {
+    float: left;
+  }
+
+  .sidebar__btn-name {
+    float: left;
+    font-size: 13px;
+    padding: 5px 0px 0px 15px;
+  }

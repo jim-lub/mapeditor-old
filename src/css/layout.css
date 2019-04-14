@@ -1,0 +1,21 @@
+.clearfix {
+  overflow: hidden;
+}
+
+.layout__wrapper {
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "sidebar content";
+  width: 100vw;
+  height: 100vh;
+}
+
+.layout__sidebar {
+  grid-area: sidebar;
+}
+
+.layout__content {
+  grid-area: content;
+}
