@@ -47,7 +47,7 @@ const SignInFormBase = ({history}) => {
         type="password"
         placeholder="Password"
       /><br />
-      <button style={{margin: "5px 0 0 25px"}} disabled={isInvalidFormData} type="submit">
+      <button disabled={isInvalidFormData} type="submit">
         Sign In
       </button>
 

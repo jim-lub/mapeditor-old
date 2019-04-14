@@ -2,12 +2,15 @@ import React from 'react';
 
 import { Button } from './Button';
 
+import { SIDEBAR_ROUTES } from 'config/constants/sidebar';
+
 export default () => {
   return (
     <div className="sidebar__wrapper">
-      <Button route="/" name="Dashboard" icon="default/dashboard.png" />
-      <Button route="/signup" name="Sign Up" icon="default/auth_sign_up.png" />
-      <Button route="/signin" name="Sign In" icon="default/auth_sign_in.png" />
+     {
+       SIDEBAR_ROUTES
+        .map((route, index) => <Button {...route} />)
+     }
     </div>
   )
 }

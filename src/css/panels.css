@@ -1,5 +1,6 @@
 .panel__small {
   float: left;
+  width: 250px;
   margin: 15px;
   padding: 20px;
   border: 1px solid #ccd1d9;

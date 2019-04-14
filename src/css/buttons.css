@@ -1,4 +1,5 @@
 button {
+  width: 100%;
   -moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
 	box-shadow:inset 0px 1px 0px 0px #54a3f7;

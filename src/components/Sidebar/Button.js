@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const Button = ({route, name, icon}) => {
+export const Button = ({exact, route, name, icon}) => {
   return (
-    <Link to ={route}>
-      <div className="sidebar__btn clearfix">
+    <NavLink exact={exact} to ={route} className="sidebar__btn" activeClassName="sidebar__btn-active">
+      <div className="sidebar__btn-content-wrapper clearfix">
         <div className="sidebar__btn-icon">
           <img src={require(`../../assets/icons/${icon}`)} width="28" height="28" alt="" />
         </div>
@@ -12,6 +12,6 @@ export const Button = ({route, name, icon}) => {
           {name}
         </div>
       </div>
-    </Link>
+    </NavLink>
   )
 }
