@@ -1,16 +1,21 @@
 import React from 'react';
-import { useContext } from 'react';
 
-import { FirebaseContext } from 'lib/firebase';
-import { useAuthentication } from 'lib/authentication';
-import { useAuthorization } from 'lib/authentication';
+import { useFirebase } from 'lib/firebase';
+
+import {
+  useAuthentication,
+  useAuthorization,
+  useRedirect
+} from 'lib/authentication';
+
+import * as ROUTES from 'config/constants/routes';
+import PERMISSIONS from 'config/constants/permissions';
 
 export default () => {
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
   const auth = useAuthentication();
-  const authorization = useAuthorization(false);
-
-  console.log('userData: ', auth.user);
+  const authorization = useAuthorization();
+  const redirect = useRedirect();
 
   if (auth.isLoading) {
     return (
@@ -32,7 +37,14 @@ export default () => {
 
   return (
     <div className="panel__small">
-      {authorization.redirectIfConditionIsFalse()}
+      {
+        (authorization
+          .condition(
+            PERMISSIONS.isMember(auth.user)
+          ))
+            ? ""
+            : redirect.to(ROUTES.AUTH_SIGN_IN.route)
+      }
       <h1>Dashboard</h1>
       <h3>Hello, Guest</h3>
     </div>

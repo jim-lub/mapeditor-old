@@ -1,16 +1,17 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import { FirebaseContext } from 'lib/firebase';
+import { useFirebase } from 'lib/firebase';
+
 import * as ROUTES from 'config/constants/routes';
 
 const SignInFormBase = ({history}) => {
   const [email, setEmail] = useState(''),
         [password, setPassword] = useState(''),
         [error, setError] = useState(null),
-        firebase = useContext(FirebaseContext);
+        firebase = useFirebase();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();

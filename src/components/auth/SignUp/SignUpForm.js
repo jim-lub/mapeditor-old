@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import { FirebaseContext } from 'lib/firebase';
+import { useFirebase } from 'lib/firebase';
+
 import * as ROUTES from 'config/constants/routes';
 
 const SignUpFormBase = ({history}) => {
@@ -12,14 +13,22 @@ const SignUpFormBase = ({history}) => {
         [passwordOne, setPasswordOne] = useState(''),
         [passwordTwo, setPasswordTwo] = useState(''),
         [error, setError] = useState(null),
-        firebase = useContext(FirebaseContext);
+        firebase = useFirebase();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+    firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+        return firebase.user(authUser.user.uid)
+          .set({
+            username,
+            email
+          },
+          { merge: true }
+        );
+      })
+      .then(() => {
         setUsername('');
         setEmail('');
         setPasswordOne('');
