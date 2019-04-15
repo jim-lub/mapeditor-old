@@ -13,18 +13,21 @@ export default () => {
   const auth = useAuthentication();
   const authorization = useAuthorization();
 
+  if (auth.isLoading) return null;
+
   return (
     <div className="sidebar__wrapper">
       {
         SIDEBAR_ROUTES
           .map((route, index) => {
-            return route.authorization.map((rule) => {
-              if (authorization.condition(PERMISSIONS[rule](auth.user))) {
+              if (route.rules[0] === 'is_signed_in' && authorization({rules: [(auth.user)]})) {
                 return <Button key={index} {...route} />
               }
 
+              if (route.rules[0] === 'is_not_signed_in' && authorization({rules: [(!auth.user)]})) {
+                return <Button key={index} {...route} />
+              }
               return null;
-            })
           })
       }
     </div>

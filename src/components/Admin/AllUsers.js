@@ -30,9 +30,8 @@ export const AllUsers = () => {
     (!loading)
     ? <div>
         {
-          users.map(user => {
-            console.log(user);
-            return (<div>{user.email}, {user.username}, {user.uid}</div>)
+          users.map((user, index) => {
+            return (<div key={index}>{user.email}, {user.username}, {user.uid}</div>)
           })
         }
       </div>

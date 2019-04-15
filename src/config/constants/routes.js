@@ -16,6 +16,7 @@ export const DASHBOARD = {
   name: 'Dashboard',
   desc: '',
   icon: 'default/dashboard.png',
+  rules: ['is_signed_in'],
   authorization: ['isMember', 'isAdmin']
 }
 
@@ -27,6 +28,7 @@ export const AUTH_SIGN_UP = {
   name: 'Sign Up',
   desc: '',
   icon: 'default/auth_sign_up.png',
+  rules: ['is_not_signed_in'],
   authorization: ['isGuest']
 }
 
@@ -37,6 +39,7 @@ export const AUTH_SIGN_IN = {
   name: 'Sign In',
   desc: '',
   icon: 'default/auth_sign_in.png',
+  rules: ['is_not_signed_in'],
   authorization: ['isGuest']
 }
 
@@ -47,6 +50,7 @@ export const AUTH_FORGOT_PASSWORD = {
   name: 'Forgot Password',
   desc: '',
   icon: 'default/auth_forgot_password.png',
+  rules: ['is_not_signed_in'],
   authorization: ['isGuest']
 }
 
@@ -57,6 +61,7 @@ export const AUTH_ACCOUNT_SETTINGS = {
   name: 'Account Settings',
   desc: '',
   icon: 'default/auth_account_settings.png',
+  rules: ['is_signed_in'],
   authorization: ['isMember', 'isAdmin']
 }
 
@@ -68,5 +73,6 @@ export const ADMIN = {
   name: 'Admin',
   desc: '',
   icon: 'default/admin.png',
+  rules: ['is_signed_in'],
   authorization: ['isMember', 'isAdmin']
 }

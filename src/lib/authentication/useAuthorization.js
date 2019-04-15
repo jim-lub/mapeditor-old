@@ -1,16 +1,20 @@
-// import React from 'react';
-// import { useState, useEffect, useContext } from 'react';
-// import { withRouter } from 'react-router-dom';
-// import { compose } from 'recompose';
+import { useRedirect } from 'lib/authentication';
 
-// import { FirebaseContext } from 'lib/firebase';
+import * as ROUTES from 'config/constants/routes';
 
 export const useAuthorization = () => {
-  // const [role, setRole] = useState(null);
-  // const [permissions, setPermissions] = useState(null);
-  // const firebase = useContext(FirebaseContext);
+  const redirect = useRedirect();
 
-  return {
-    condition: (condition) => (!condition) ? false : true
-  };
+  return ({rules = [], route = null}) => {
+    const check = (rules.filter(rule => rule).length > 0);
+
+    if (route && check) {
+      return redirect.to(ROUTES[route].route)
+    }
+
+    if (check) {
+      return check
+    }
+    return null;
+  }
 }
