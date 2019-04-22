@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { useAuthentication, useAuthorization } from 'lib/authentication';
+import { useAuthentication, useAuthorization } from 'lib/auth';
 
 import { AllUsers } from './AllUsers';
 

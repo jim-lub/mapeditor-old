@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { useAuthentication } from 'lib/authentication';
-import { useRedirect } from 'lib/authentication';
+import { useAuthentication } from 'lib/auth';
+import { useRedirect } from 'lib/auth';
 
 import * as ROUTES from 'config/constants/routes';
 import { RULES } from 'config/authorization_rules';

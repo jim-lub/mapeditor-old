@@ -5,7 +5,7 @@ import * as ROUTES from 'config/constants/routes';
 import {
   useAuthentication,
   useAuthorization,
-} from 'lib/authentication';
+} from 'lib/auth';
 
 import { SignInForm } from './SignInForm';
 

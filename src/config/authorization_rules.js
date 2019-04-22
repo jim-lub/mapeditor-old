@@ -10,7 +10,7 @@ export const RULES = {
       : false,
 
   'is_admin': ({ auth }) =>
-    (auth.user)
+    (auth.user && auth.user.roles.ADMIN)
       ? true
       : false,
 }

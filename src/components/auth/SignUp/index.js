@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import {
   useAuthentication,
   useAuthorization,
-} from 'lib/authentication';
+} from 'lib/auth';
 
 import { SignUpForm } from './SignUpForm';
 

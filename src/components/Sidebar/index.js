@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Button } from './Button';
 
-import { useAuthentication } from 'lib/authentication';
-import { useAuthorization } from 'lib/authentication';
+import { useAuthentication } from 'lib/auth';
+import { useAuthorization } from 'lib/auth';
 
 import { SIDEBAR_ROUTES } from 'config/constants/sidebar';
 
@@ -15,6 +15,10 @@ export default () => {
 
   const isNotSignedIn = useAuthorization({
     rules: ['is_not_signed_in']
+  });
+
+  const isAdmin = useAuthorization({
+    rules: ['is_signed_in', 'is_admin']
   });
 
   if (auth.isLoading) return null;
