@@ -10,17 +10,17 @@ import {
 export default () => {
   const firebase = useFirebase();
   const auth = useAuthentication();
-  const authorization = useAuthorization();
+  const canAccessDashboard = useAuthorization({
+    rules: ['is_signed_in'],
+    route: 'AUTH_SIGN_IN'
+  });
 
   if (auth.isLoading) return null;
 
   return (
     <Fragment>
       {/*** AUTH ***/}
-        {authorization({
-          rules: [(!auth.user)],
-          route: 'AUTH_SIGN_IN'
-        })}
+        {canAccessDashboard.redirect()}
 
       {/* render */}
         <div className="panel__small">

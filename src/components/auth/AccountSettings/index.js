@@ -9,17 +9,17 @@ import { ChangePasswordForm } from './ChangePasswordForm';
 
 export default () => {
   const auth = useAuthentication();
-  const authorization = useAuthorization();
+  const canAccesAccountSettings = useAuthorization({
+    rules: ['is_signed_in'],
+    route: 'AUTH_SIGN_IN'
+  });
 
   if (auth.isLoading) return null;
 
   return (
     <Fragment>
       {/*** AUTH ***/}
-        {authorization({
-          rules: [(!auth.user)],
-          route: 'AUTH_SIGN_IN'
-        })}
+        {canAccesAccountSettings.redirect()}
 
       {/* render */}
         <h1>Account Settings</h1>

@@ -9,17 +9,17 @@ import { SignUpForm } from './SignUpForm';
 
 export default () => {
   const auth = useAuthentication();
-  const authorization = useAuthorization();
+  const canAccessSignUpForm = useAuthorization({
+    rules: ['is_not_signed_in'],
+    route: 'DASHBOARD'
+  });
 
   if (auth.isLoading) return null;
 
   return (
     <Fragment>
       {/*** AUTH ***/}
-        {authorization({
-          rules: [(auth.user)],
-          route: 'DASHBOARD'
-        })}
+        {canAccessSignUpForm.redirect()}
 
       {/* render */}
         <h1>Sign Up</h1>

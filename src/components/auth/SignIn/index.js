@@ -11,17 +11,17 @@ import { SignInForm } from './SignInForm';
 
 export default () => {
   const auth = useAuthentication();
-  const authorization = useAuthorization();
+  const canAccessSignInForm = useAuthorization({
+    rules: ['is_not_signed_in'],
+    route: 'DASHBOARD'
+  });
 
   if (auth.isLoading) return null;
 
   return (
     <Fragment>
       {/*** AUTH ***/}
-        {authorization({
-          rules: [(auth.user)],
-          route: 'DASHBOARD'
-        })}
+        {canAccessSignInForm.redirect()}
 
       {/* render */}
         <h1>Sign In</h1>

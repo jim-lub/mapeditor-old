@@ -6,17 +6,17 @@ import { AllUsers } from './AllUsers';
 
 export default () => {
   const auth = useAuthentication();
-  const authorization = useAuthorization();
+  const canAccesAdminPanel = useAuthorization({
+    rules: ['is_signed_in', 'is_admin'],
+    route: 'AUTH_SIGN_IN'
+  });
 
   if (auth.isLoading) return null;
 
   return (
     <Fragment>
       {/*** AUTH ***/}
-        {authorization({
-          rules: [(!auth.user)],
-          route: 'AUTH_SIGN_IN'
-        })}
+        {canAccesAdminPanel.redirect()}
 
       {/* render component */}
         <h1>Admin</h1>
