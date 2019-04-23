@@ -34,6 +34,8 @@ const SignInFormBase = ({history}) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
+      {error && <p>{error.message}</p>}
+      <label className="form__icon"><img src={require('../../../assets/icons/small/email.png')} alt="" width="32" height="32" /></label>
       <input
         name="email"
         value={email}
@@ -41,6 +43,7 @@ const SignInFormBase = ({history}) => {
         type="text"
         placeholder="Email Address"
       /><br />
+      <label className="form__icon"><img src={require('../../../assets/icons/small/password.png')} alt="" width="32" height="32" /></label>
       <input
         name="password"
         value={password}
@@ -48,11 +51,9 @@ const SignInFormBase = ({history}) => {
         type="password"
         placeholder="Password"
       /><br />
-      <button disabled={isInvalidFormData} type="submit">
-        Sign In
+      <button disabled={isInvalidFormData} type="submit" style={{width: '100%'}}>
+        <h3>Sign In</h3>
       </button>
-
-      {error && <p>{error.message}</p>}
     </form>
   )
 }

@@ -15,8 +15,19 @@ const config = {
 export class Firebase {
   constructor() {
     app.initializeApp(config);
+
     this.auth = app.auth();
     this.db = app.firestore();
+
+    this.googleProvider = new app.auth.GoogleAuthProvider();
+    this.googleProvider.addScope('email');
+
+    this.facebookProvider = new app.auth.FacebookAuthProvider();
+    this.facebookProvider.addScope('email');
+
+    this.githubProvider = new app.auth.GithubAuthProvider();
+    this.githubProvider.addScope('user');
+    this.githubProvider.addScope('user:email');
   }
 
   // *** Auth API ***
@@ -25,6 +36,15 @@ export class Firebase {
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
+
+  doSignInWithGoogle = () =>
+    this.auth.signInWithPopup(this.googleProvider);
+
+  doSignInWithFacebook = () =>
+    this.auth.signInWithPopup(this.facebookProvider);
+
+  doSignInWithGithub = () =>
+    this.auth.signInWithPopup(this.githubProvider);
 
   doSignOut = () =>
     this.auth.signOut();

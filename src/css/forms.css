@@ -1,11 +1,23 @@
 input {
+  box-sizing: border-box;
   width: 100%;
-  padding:5px;
+  padding: 12px;
   margin-bottom: 5px;
-  border-radius: 3px;
-  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+  border: 1px solid #aab2bd;
+  text-indent: 38px;
+  font-size: 16px;
 }
 
-.form__ {
+input[type=text]:focus {
+  border: 1px solid #3bafda;
+}
 
+input[type=password]:focus {
+  border: 1px solid #3bafda;
+}
+
+.form__icon {
+  position: absolute;
+  padding: 9px;
 }

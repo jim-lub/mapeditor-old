@@ -7,7 +7,7 @@
 }
 
 html, body {
-  background-color: #e6e9ed;
+  background: #f5f7fa;
   height: 100%;
 }
 
@@ -17,13 +17,33 @@ span {
 }
 
 h1 {
-  font-size: 22px;
+  font-size: 28px;
+  color: inherit;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 24px;
+  color: inherit;
 }
 
 h3 {
+  font-size: 20px;
+  color: inherit;
+}
+
+h4 {
   font-size: 18px;
+  color: inherit;
+}
+
+h5 {
+  font-size: 16px;
+  color: inherit;
+}
+
+.line {
+  width: 100%;
+
+  margin: 2px 0;
+  border-bottom: solid 1px #ccd1d9;
 }

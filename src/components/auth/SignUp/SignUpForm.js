@@ -31,6 +31,7 @@ const SignUpFormBase = ({history}) => {
           .set({
             username,
             email,
+            auth_ref: "local",
             roles
           },
           { merge: true }

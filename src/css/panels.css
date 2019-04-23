@@ -1,9 +1,13 @@
+.panel__centered {
+  width: 250px;
+  margin: 0 auto;
+}
+
 .panel__small {
-  float: left;
   width: 250px;
   margin: 15px;
   padding: 20px;
   border: 1px solid #ccd1d9;
   border-radius: 3px;
-  background-color: #f5f7fa;
+  /* background-color: #f5f7fa; */
 }

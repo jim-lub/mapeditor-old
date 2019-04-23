@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { useFirebase } from 'lib/firebase';
 
@@ -18,16 +18,28 @@ export default () => {
         route = ROUTES.DASHBOARD.authorization_redirect;
 
   return (
+    <Fragment>
+    <button type="button" onClick={firebase.doSignOut}>Sign Out</button>
     <AuthorizationWrapper rules={rules} route={route}>
       <h1>Dashboard</h1>
       <div className="panel__small">
-        {
-          (auth.user)
-            ? `Hello ${auth.user.username}`
-            : ""
-        }
+        <div>
+          {
+            (auth.user)
+              ? <img src={auth.user.avatar} alt="" width="128" height="128"/>
+              : ""
+          }
+        </div>
+        <div>
+          {
+            (auth.user)
+              ? `Hello ${auth.user.username}`
+              : ""
+          }
+        </div>
       <button type="button" onClick={firebase.doSignOut}>Sign Out</button>
       </div>
     </AuthorizationWrapper>
+    </Fragment>
   )
 }
