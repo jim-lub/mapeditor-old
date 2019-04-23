@@ -1,42 +1,33 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { useFirebase } from 'lib/firebase';
 
+import AuthorizationWrapper from 'components/AuthorizationWrapper';
+
+import * as ROUTES from 'config/constants/routes';
+
 import {
   useAuthentication,
-  useAuthorization,
 } from 'lib/auth';
 
 export default () => {
-  const firebase = useFirebase();
-  const auth = useAuthentication();
-  const canAccessDashboard = useAuthorization({
-    rules: ['is_signed_in'],
-    route: 'AUTH_SIGN_IN'
-  });
+  const firebase = useFirebase(),
+        auth = useAuthentication();
 
-  if (auth.isLoading) return null;
+  const rules = ROUTES.DASHBOARD.authorization_rules,
+        route = ROUTES.DASHBOARD.authorization_redirect;
 
-  if (canAccessDashboard.hasAccess()) {
-    return (
-      <Fragment>
-        {/* render */}
-          <div className="panel__small">
-          <h1>Dashboard</h1>
-          <h3>Hello, {(auth.user) ? auth.user.username : ""}</h3>
-          <h5>{(auth.user) ? auth.user.uid : ""}</h5>
-          <h5>{(auth.user) ? auth.user.email : ""}</h5>
-          <h5>{(auth.user) ? [...Object.values(auth.user.roles)] : ""}</h5>
-          <button type="button" onClick={firebase.doSignOut}>Sign Out</button>
-          </div>
-      </Fragment>
-    )
-  } else {
-    return (
-      <Fragment>
-        {/*** AUTH ***/}
-          {canAccessDashboard.redirect()}
-      </Fragment>
-    )
-  }
+  return (
+    <AuthorizationWrapper rules={rules} route={route}>
+      <h1>Dashboard</h1>
+      <div className="panel__small">
+        {
+          (auth.user)
+            ? `Hello ${auth.user.username}`
+            : ""
+        }
+      <button type="button" onClick={firebase.doSignOut}>Sign Out</button>
+      </div>
+    </AuthorizationWrapper>
+  )
 }

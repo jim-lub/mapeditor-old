@@ -1,35 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import * as ROUTES from 'config/constants/routes';
 
-import {
-  useAuthentication,
-  useAuthorization,
-} from 'lib/auth';
-
+import AuthorizationWrapper from 'components/AuthorizationWrapper';
 import { SignInForm } from './SignInForm';
 
-export default () => {
-  const auth = useAuthentication();
-  const canAccessSignInForm = useAuthorization({
-    rules: ['is_not_signed_in'],
-    route: 'DASHBOARD'
-  });
+import * as ROUTES from 'config/constants/routes';
 
-  if (auth.isLoading) return null;
+export default () => {
+  const rules = ROUTES.AUTH_SIGN_IN.authorization_rules,
+        route = ROUTES.AUTH_SIGN_IN.authorization_redirect;
 
   return (
-    <Fragment>
-      {/*** AUTH ***/}
-        {canAccessSignInForm.redirect()}
-
-      {/* render */}
-        <h1>Sign In</h1>
-        <div className="panel__small">
-          <SignInForm />
-          Don't have an account? <Link to={ROUTES.AUTH_SIGN_UP.route}>Sign Up</Link><br />
-          <Link to={ROUTES.AUTH_FORGOT_PASSWORD.route}>Forgot Password?</Link>
-        </div>
-    </Fragment>
+    <AuthorizationWrapper rules={rules} route={route}>
+      <h1>Sign In</h1>
+      <div className="panel__small">
+        <SignInForm />
+        Don't have an account? <Link to={ROUTES.AUTH_SIGN_UP.route}>Sign Up</Link><br />
+        <Link to={ROUTES.AUTH_FORGOT_PASSWORD.route}>Forgot Password?</Link>
+      </div>
+    </AuthorizationWrapper>
   )
 }

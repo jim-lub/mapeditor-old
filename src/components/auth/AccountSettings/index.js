@@ -1,31 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import {
-  useAuthentication,
-  useAuthorization,
-} from 'lib/auth';
-
+import AuthorizationWrapper from 'components/AuthorizationWrapper';
 import { ChangePasswordForm } from './ChangePasswordForm';
 
-export default () => {
-  const auth = useAuthentication();
-  const canAccesAccountSettings = useAuthorization({
-    rules: ['is_signed_in'],
-    route: 'AUTH_SIGN_IN'
-  });
+import * as ROUTES from 'config/constants/routes';
 
-  if (auth.isLoading) return null;
+export default () => {
+  const rules = ROUTES.AUTH_ACCOUNT_SETTINGS.authorization_rules,
+        route = ROUTES.AUTH_ACCOUNT_SETTINGS.authorization_redirect;
 
   return (
-    <Fragment>
-      {/*** AUTH ***/}
-        {canAccesAccountSettings.redirect()}
-
-      {/* render */}
-        <h1>Account Settings</h1>
-        <div className="panel__small">
-          <ChangePasswordForm />
-        </div>
-    </Fragment>
+    <AuthorizationWrapper rules={rules} route={route}>
+      <h1>Account Settings</h1>
+      <div className="panel__small">
+        <ChangePasswordForm />
+      </div>
+    </AuthorizationWrapper>
   )
 }

@@ -8,6 +8,7 @@ import { RULES } from 'config/authorization_rules';
 
 export const useAuthorization = (props) => {
   const [access, setAccess] = useState(true),
+        [loading, setLoading] =  useState(true),
         [rules, setRules] = useState([]),
         [route, setRoute] = useState(null);
 
@@ -34,6 +35,7 @@ export const useAuthorization = (props) => {
         ? setAccess(false)
         : setAccess(true);
 
+      setLoading(false);
   }, [rules, auth]);
 
   return {
@@ -42,9 +44,7 @@ export const useAuthorization = (props) => {
         ? null
         : redirect.to(ROUTES[route].route),
 
-    hasAccess: () =>
-      (access)
-        ? true
-        : false
+    hasAccess: access,
+    isLoading: loading
   }
 }

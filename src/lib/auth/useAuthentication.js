@@ -5,7 +5,7 @@ import { useFirebase } from 'lib/firebase';
 export const useAuthentication = () => {
   const [authUser, setAuthUser] = useState({
     isLoading: true,
-    user: null
+    user: JSON.parse(localStorage.getItem('authUser'))
   });
   const firebase = useFirebase();
 
@@ -24,6 +24,7 @@ export const useAuthentication = () => {
                     dbUser.roles = {};
                   }
 
+                  localStorage.setItem('authUser', JSON.stringify(authUser));
                   setAuthUser({
                     isLoading: false,
                     user: {
@@ -34,6 +35,7 @@ export const useAuthentication = () => {
                   })
                 })
             } else {
+              localStorage.removeItem('authUser');
               setAuthUser({
                 isLoading: false,
                 user: null

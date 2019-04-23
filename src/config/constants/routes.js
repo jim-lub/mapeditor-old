@@ -16,8 +16,8 @@ export const DASHBOARD = {
   name: 'Dashboard',
   desc: '',
   icon: 'default/dashboard.png',
-  rules: ['is_signed_in'],
-  authorization: ['isMember', 'isAdmin']
+  authorization_rules: ['is_signed_in'],
+  authorization_redirect: 'AUTH_SIGN_IN'
 }
 
 // *** AUTH ***
@@ -28,8 +28,8 @@ export const AUTH_SIGN_UP = {
   name: 'Sign Up',
   desc: '',
   icon: 'default/auth_sign_up.png',
-  rules: ['is_not_signed_in'],
-  authorization: ['isGuest']
+  authorization_rules: ['is_not_signed_in'],
+  authorization_redirect: 'DASHBOARD'
 }
 
 export const AUTH_SIGN_IN = {
@@ -39,8 +39,8 @@ export const AUTH_SIGN_IN = {
   name: 'Sign In',
   desc: '',
   icon: 'default/auth_sign_in.png',
-  rules: ['is_not_signed_in'],
-  authorization: ['isGuest']
+  authorization_rules: ['is_not_signed_in'],
+  authorization_redirect: 'DASHBOARD'
 }
 
 export const AUTH_FORGOT_PASSWORD = {
@@ -50,8 +50,8 @@ export const AUTH_FORGOT_PASSWORD = {
   name: 'Forgot Password',
   desc: '',
   icon: 'default/auth_forgot_password.png',
-  rules: ['is_not_signed_in'],
-  authorization: ['isGuest']
+  authorization_rules: ['is_not_signed_in'],
+  authorization_redirect: 'DASHBOARD'
 }
 
 export const AUTH_ACCOUNT_SETTINGS = {
@@ -61,8 +61,8 @@ export const AUTH_ACCOUNT_SETTINGS = {
   name: 'Account Settings',
   desc: '',
   icon: 'default/auth_account_settings.png',
-  rules: ['is_signed_in'],
-  authorization: ['isMember', 'isAdmin']
+  authorization_rules: ['is_signed_in'],
+  authorization_redirect: 'AUTH_SIGN_IN'
 }
 
 // *** ADMIN ***
@@ -73,6 +73,6 @@ export const ADMIN = {
   name: 'Admin',
   desc: '',
   icon: 'default/admin.png',
-  rules: ['is_signed_in'],
-  authorization: ['isMember', 'isAdmin']
+  authorization_rules: ['is_signed_in', 'is_admin'],
+  authorization_redirect: 'AUTH_SIGN_IN'
 }

@@ -28,11 +28,11 @@ export default () => {
       {
         SIDEBAR_ROUTES
           .map((route, index) => {
-              if (route.rules[0] === 'is_signed_in' && isSignedIn.hasAccess()) {
+              if (route.authorization_rules[0] === 'is_signed_in' && isSignedIn.hasAccess) {
                 return <Button key={index} {...route} />
               }
 
-              if (route.rules[0] === 'is_not_signed_in' && isNotSignedIn.hasAccess()) {
+              if (route.authorization_rules[0] === 'is_not_signed_in' && isNotSignedIn.hasAccess) {
                 return <Button key={index} {...route} />
               }
               return null;

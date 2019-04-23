@@ -1,31 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import {
-  useAuthentication,
-  useAuthorization,
-} from 'lib/auth';
-
+import AuthorizationWrapper from 'components/AuthorizationWrapper';
 import { SignUpForm } from './SignUpForm';
 
-export default () => {
-  const auth = useAuthentication();
-  const canAccessSignUpForm = useAuthorization({
-    rules: ['is_not_signed_in'],
-    route: 'DASHBOARD'
-  });
+import * as ROUTES from 'config/constants/routes';
 
-  if (auth.isLoading) return null;
+export default () => {
+  const rules = ROUTES.AUTH_SIGN_UP.authorization_rules,
+        route = ROUTES.AUTH_SIGN_UP.authorization_redirect;
 
   return (
-    <Fragment>
-      {/*** AUTH ***/}
-        {canAccessSignUpForm.redirect()}
-
-      {/* render */}
-        <h1>Sign Up</h1>
-        <div className="panel__small">
-          <SignUpForm />
-        </div>
-    </Fragment>
+    <AuthorizationWrapper rules={rules} route={route}>
+      <h1>Sign Up</h1>
+      <div className="panel__small">
+        <SignUpForm />
+      </div>
+    </AuthorizationWrapper>
   )
 }
